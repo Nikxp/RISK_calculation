@@ -5,6 +5,7 @@ from typing import Iterable
 from itertools import product
 
 available_dices = range(1,7)
+
 """Comparator
 
 result: (attacker_resources_lost, defender_resources_lost)
@@ -15,8 +16,8 @@ def fight (attackers: Iterable, defenders: Iterable)->tuple:
     defend = list(defenders)
     atk_lost = 0
     def_lost = 0
-    atk.sort()
-    defend.sort()
+    atk.sort(reverse=True)
+    defend.sort(reverse=True)
     for pair in zip(atk, defend):
         if (pair[0] > pair[1]):
             def_lost += 1
@@ -45,5 +46,5 @@ def main():
     print(f"Ratio is : {Fraction(atk_lost,atk_lost+def_lost)} or {atk_lost/(atk_lost+def_lost)}")
     
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.WARNING)
+    logging.basicConfig(level=logging.DEBUG)
     main()
